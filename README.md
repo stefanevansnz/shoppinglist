@@ -33,6 +33,17 @@ my-application$ npm run test
  cd react-app
  npm start
 ```
+## Deploy ReactJS to S3
+
+```bash
+cd react-app
+npm run build
+aws s3 sync build/ s3://sam-app-bucket-915922766016
+```
+
+
+
+
 ## Cleanup
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
