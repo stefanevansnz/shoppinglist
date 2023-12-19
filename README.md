@@ -1,6 +1,6 @@
 # Shopping List App using AWS SAM
 
-This project contains source code and supporting files for a serverless application that can be used to add items to a shopping list and uses AWS SAM.
+This project contains source code and supporting files for a serverless application that can be used to view items on a shopping list and uses AWS SAM.
 
 To use the AWS SAM CLI, you need the following tools:
 
