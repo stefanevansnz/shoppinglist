@@ -19,13 +19,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-          Shopping List
-          <ul>
+          <h2>Shopping List</h2>
+          <table>
           {posts.map(post => (
-            <li key={post.id}>{post.item}</li>
+            <tr>
+              <td>{post.item}</td>
+            </tr>
           ))}
-          </ul>
+          </table>
       </header>
     </div>
   );

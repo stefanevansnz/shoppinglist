@@ -1,4 +1,4 @@
-# Shopping List App
+# Shopping List App using AWS SAM
 
 This project contains source code and supporting files for a serverless application that can be used to add items to a shopping list and uses AWS SAM.
 
