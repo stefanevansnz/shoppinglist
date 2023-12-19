@@ -23,10 +23,16 @@ sam deploy --guided
 Tests are defined in the `__tests__` folder in this project. Use `npm` to install the [Jest test framework](https://jestjs.io/) and run unit tests.
 
 ```bash
+cd sam-app
 my-application$ npm install
 my-application$ npm run test
 ```
 
+## Test locally
+```bash
+ cd react-app
+ npm start
+```
 ## Cleanup
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
