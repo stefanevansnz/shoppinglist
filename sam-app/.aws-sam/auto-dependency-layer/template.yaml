@@ -115,6 +115,51 @@ Resources:
         Fn::Sub: ${AWS::StackName}-bucket-${AWS::AccountId}
       WebsiteConfiguration:
         IndexDocument: index.html
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        DefaultCacheBehavior:
+          TargetOriginId: MyCDN
+          ViewerProtocolPolicy: allow-all
+        Enabled: true
+        Origins:
+        - DomainName:
+            Fn::GetAtt:
+            - Bucket
+            - RegionalDomainName
+          Id: MyCDN
+          S3OriginConfig:
+            OriginAccessIdentity:
+              Fn::Sub:
+              - origin-access-identity/cloudfront/${OriginAccessIdentity}
+              - OriginAccessIdentity:
+                  Ref: DistributionOriginAccessIdentity
+  DistributionOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: MyCDN
+  DistributionBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: Bucket
+      PolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            AWS:
+              Fn::Sub: arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity
+                ${DistributionOriginAccessIdentity}
+          Action: s3:GetObject
+          Resource:
+            Fn::Sub:
+            - ${BucketArn}/*
+            - BucketArn:
+                Fn::GetAtt:
+                - Bucket
+                - Arn
   AwsSamAutoDependencyLayerNestedStack:
     DeletionPolicy: Delete
     Metadata:
