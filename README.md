@@ -38,7 +38,8 @@ my-application$ npm run test
 ```bash
 cd react-app
 npm run build
-aws s3 sync build/ s3://sam-app-bucket-915922766016
+aws s3 sync build/ s3://your-bucket-name-here
+
 ```
 
 
