@@ -78,6 +78,12 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}-bucket-${AWS::AccountId}
+      WebsiteConfiguration:
+        IndexDocument: index.html
 Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL for Prod stage

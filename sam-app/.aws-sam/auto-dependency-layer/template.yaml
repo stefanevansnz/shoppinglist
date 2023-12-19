@@ -113,34 +113,8 @@ Resources:
     Properties:
       BucketName:
         Fn::Sub: ${AWS::StackName}-bucket-${AWS::AccountId}
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-        - ServerSideEncryptionByDefault:
-            SSEAlgorithm: aws:kms
-            KMSMasterKeyID: alias/aws/s3
-      PublicAccessBlockConfiguration:
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-  BucketBucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket:
-        Ref: Bucket
-      PolicyDocument:
-        Id: RequireEncryptionInTransit
-        Version: '2012-10-17'
-        Statement:
-        - Principal: '*'
-          Action: '*'
-          Effect: Deny
-          Resource:
-          - Fn::GetAtt:
-            - Bucket
-            - Arn
-          - Fn::Sub: ${Bucket.Arn}/*
-          Condition:
-            Bool:
-              aws:SecureTransport: 'false'
+      WebsiteConfiguration:
+        IndexDocument: index.html
   AwsSamAutoDependencyLayerNestedStack:
     DeletionPolicy: Delete
     Metadata:
