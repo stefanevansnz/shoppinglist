@@ -7,7 +7,7 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
+    axios.get('https://n8zgm9ipzf.execute-api.ap-southeast-2.amazonaws.com/Prod/')
       .then(response => {
         setPosts(response.data);
       })
@@ -20,14 +20,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
           Shopping List
           <ul>
           {posts.map(post => (
-            <li key={post.id}>{post.title}</li>
+            <li key={post.id}>{post.item}</li>
           ))}
           </ul>
-        </p>
       </header>
     </div>
   );
