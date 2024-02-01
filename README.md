@@ -15,7 +15,7 @@ To build and deploy your application for the first time, run the following in yo
 ```bash
 cd sam-app
 sam build
-sam deploy --guided
+sam deploy
 ```
 
 ## Unit tests
@@ -42,6 +42,13 @@ aws s3 sync build/ s3://your-bucket-name-here
 
 ```
 
+## Test upload using client based on https://docs.aws.amazon.com/textract/latest/dg/lambda.html
+
+```bash
+cd .\sam-app\src\client\
+
+python3 textract_client.py stefan-sam-app-extractText-dywsjEgLYEyC s3://stefan-sam-app-imagebuck-915922766016/shopping_list.jpg
+```
 
 
 

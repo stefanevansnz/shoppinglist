@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: sam-app
-Transform:
-  - AWS::Serverless-2016-10-31
+Transform: AWS::Serverless-2016-10-31
 Globals:
   Api:
     Cors:
@@ -124,6 +123,73 @@ Resources:
             Resource: !Sub
               - ${BucketArn}/*
               - BucketArn: !GetAtt Bucket.Arn
+  extractText:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: !Sub
+        - Stack ${AWS::StackName} Function ${ResourceName}
+        - ResourceName: extractText
+      CodeUri: src/ExtractFunction
+      Handler: handler.handler
+      Runtime: python3.9
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Policies:
+        Version: '2012-10-17'
+        Statement:
+          - Action: textract:DetectDocumentText
+            Resource: '*'
+            Effect: Allow
+            Sid: DetectDocumentText
+          - Action: s3:*
+            Resource: '*'
+            Effect: Allow
+            Sid: ReadImageFromBucket
+      Environment:
+        Variables:
+          SAMPLETABLE_TABLE_NAME: !Ref SampleTable
+          SAMPLETABLE_TABLE_ARN: !GetAtt SampleTable.Arn
+      Events:
+        ServerlessRestApiPOSTextract:
+          Type: Api
+          Properties:
+            Path: /extract
+            Method: POST
+  extractTextLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${extractText}
+  ImageBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}-imagebuck-${AWS::AccountId}
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+              KMSMasterKeyID: alias/aws/s3
+      PublicAccessBlockConfiguration:
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+  ImageBucketBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ImageBucket
+      PolicyDocument:
+        Id: RequireEncryptionInTransit
+        Version: '2012-10-17'
+        Statement:
+          - Principal: '*'
+            Action: '*'
+            Effect: Deny
+            Resource:
+              - !GetAtt ImageBucket.Arn
+              - !Sub ${ImageBucket.Arn}/*
+            Condition:
+              Bool:
+                aws:SecureTransport: 'false'
 Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL for Prod stage
