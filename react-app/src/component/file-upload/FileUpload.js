@@ -58,7 +58,8 @@ const FileUpload = () => {
         const blob = b64toBlob(dataUri, "image/png");
         const fileName = "beauftragung-unterschrift.png";
         const file = blobToFile(blob, fileName);
-        axios.post("https://n8zgm9ipzf.execute-api.ap-southeast-2.amazonaws.com/Prod/upload", {fileName: fileName, fileType: "image/jpg", data: blob }, config)
+        axios.post("https://n8zgm9ipzf.execute-api.ap-southeast-2.amazonaws.com/Prod/upload", 
+            {fileName: fileName, fileType: "image/png", data: dataUri }, config)
             .then(res => {
               // axios.put(res.data, file, configBlop).then(res => console.log(res));
               console.log("image uploaded");
