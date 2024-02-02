@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import FileUpload from "./component/file-upload/FileUpload";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -20,15 +20,15 @@ function App() {
     <div className="App">
       <header className="App-header">
           <h2>Shopping List</h2>
-          <table>
+          <ul>
           {posts.map(post => (
-            <tr>
-              <td>{post.item}</td>
-            </tr>
+            <li id={post.id} key={post.id}>{post.item}</li>
           ))}
-          </table>
+          </ul>
       </header>
+      <FileUpload />
     </div>
+    
   );
 }
 

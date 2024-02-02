@@ -19,4 +19,13 @@ manifest_hash = "d41d8cd98f00b204e9800998ecf8427e"
 packagetype = "Zip"
 functions = ["extractText"]
 
+[function_build_definitions.d582b1a4-a6aa-4dc6-813d-2f0b2a9fcd06]
+codeuri = "C:\\Users\\StefanEvans\\Development\\ambassador\\shoppinglist\\sam-app\\src\\UploadImageFunction"
+runtime = "python3.9"
+architecture = "x86_64"
+handler = "handler.handler"
+manifest_hash = "d41d8cd98f00b204e9800998ecf8427e"
+packagetype = "Zip"
+functions = ["uploadImage"]
+
 [layer_build_definitions]

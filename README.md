@@ -38,9 +38,12 @@ my-application$ npm run test
 ```bash
 cd react-app
 npm run build
-aws s3 sync build/ s3://your-bucket-name-here
+aws s3 sync build/ s3://stefan-sam-app-bucket-915922766016
 
 ```
+
+## Test in AWS with:
+https://djlfwcpttl0u6.cloudfront.net/index.html
 
 ## Test upload using client based on https://docs.aws.amazon.com/textract/latest/dg/lambda.html
 

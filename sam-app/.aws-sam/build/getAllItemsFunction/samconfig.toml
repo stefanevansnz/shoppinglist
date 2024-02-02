@@ -20,7 +20,6 @@ lint = true
 [default.deploy.parameters]
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
-resolve_s3 = true
 stack_name = "stefan-sam-app"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1l2f4k3znahtc"
 s3_prefix = "stefan-sam-app"
@@ -29,7 +28,6 @@ image_repositories = []
 
 [default.package]
 [default.package.parameters]
-resolve_s3 = true
 
 [default.sync]
 [default.sync.parameters]
