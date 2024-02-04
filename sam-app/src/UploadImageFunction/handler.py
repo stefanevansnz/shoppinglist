@@ -54,9 +54,9 @@ def handler(event, context):
     blocks = response['Blocks']
     for block in blocks:
         if (block['BlockType'] == 'LINE'):
-            lines.append(block['Text'])
-            #lines.append(block['Text'] + ',' + block['Confidence'])
-        
+            line = { 'id': block['Id'], 'text': block['Text'], 'confidence': round(block['Confidence']) }
+            lines.append(line)
+
     response = json.dumps(lines)
 
     #return {}

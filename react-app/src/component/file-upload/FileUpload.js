@@ -2,9 +2,12 @@ import React from 'react';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import { useCallback } from "react"; // import useCallback
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const FileUpload = () => {
+        const [lines, setLines] = useState([]);
+
         const b64toBlob = function(b64Data, contentType, sliceSize) {
             contentType = contentType || '';
             sliceSize = sliceSize || 512;
@@ -60,14 +63,22 @@ const FileUpload = () => {
         const file = blobToFile(blob, fileName);
         axios.post("https://n8zgm9ipzf.execute-api.ap-southeast-2.amazonaws.com/Prod/upload", 
             {fileName: fileName, fileType: "image/png", data: dataUri }, config)
-            .then(res => {
+            .then(response => {
               // axios.put(res.data, file, configBlop).then(res => console.log(res));
-              console.log("image uploaded");
+              setLines(response.data);
+              console.log("image uploaded " + response.data);
         });
     });
 
     return (
+
       <div className="container">
+        <h2>Scanned Ingredients:</h2>
+          <ul>
+          {lines.map(line => (
+            <li id={line.id} key={line.id}>{line.text} ({line.confidence}% Confidence)</li>
+          ))}
+        </ul>
         <Camera
             onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
             idealFacingMode = {FACING_MODES.ENVIRONMENT}
