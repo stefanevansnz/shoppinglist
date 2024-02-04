@@ -241,6 +241,11 @@ Resources:
               Resource:
                 - !Sub arn:${AWS::Partition}:s3:::${ImageBucket}
                 - !Sub arn:${AWS::Partition}:s3:::${ImageBucket}/*
+        - Statement:
+            - Action: textract:DetectDocumentText
+              Resource: '*'
+              Effect: Allow
+              Sid: DetectDocumentText
   uploadImageLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain

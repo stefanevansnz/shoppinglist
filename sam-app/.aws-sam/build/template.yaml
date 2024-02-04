@@ -290,6 +290,11 @@ Resources:
           Resource:
           - Fn::Sub: arn:${AWS::Partition}:s3:::${ImageBucket}
           - Fn::Sub: arn:${AWS::Partition}:s3:::${ImageBucket}/*
+      - Statement:
+        - Action: textract:DetectDocumentText
+          Resource: '*'
+          Effect: Allow
+          Sid: DetectDocumentText
     Metadata:
       SamResourceId: uploadImage
   uploadImageLogGroup:

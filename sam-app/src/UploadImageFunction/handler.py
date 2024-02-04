@@ -4,7 +4,10 @@ from botocore.vendored import requests
 import base64
 import boto3
 
+# Get the boto3 clients
 s3 = boto3.resource('s3')
+textract_client = boto3.client('textract')
+
 bucket_name = 'stefan-sam-app-imagebuck-915922766016'
 #where the file will be uploaded, if you want to upload the file to folder use 'Folder Name/FileName.jpeg'
 file_name_with_extention = 'photo.png'
@@ -29,12 +32,32 @@ def handler(event, context):
     
     image_base64 = image_base64[image_base64.find(",")+1:]
     
-    print(image_base64)
+    # print(image_base64)
     obj.put(Body=base64.b64decode(image_base64)) 
     
     #obj.put(Body=image_base64)
     
-    response = {}
+    # extract text and return
+    image = {
+        'S3Object':
+            {
+             'Bucket':  bucket_name,
+             'Name': file_name_with_extention
+            }
+    }
+    # Analyze the document.
+    print("extract text")
+    response = textract_client.detect_document_text(Document=image)
+
+    # Get the lines from blocks
+    lines = []
+    blocks = response['Blocks']
+    for block in blocks:
+        if (block['BlockType'] == 'LINE'):
+            lines.append(block['Text'])
+            #lines.append(block['Text'] + ',' + block['Confidence'])
+        
+    response = json.dumps(lines)
 
     #return {}
     return {
@@ -44,5 +67,5 @@ def handler(event, context):
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
         },
-        'body': json.dumps('Image uploaded')
+        'body': response
     }
