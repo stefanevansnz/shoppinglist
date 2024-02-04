@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <h2>Shopping List</h2>
+          <h2>Shopping List v0.1</h2>
           <ul>
           {posts.map(post => (
             <li id={post.id} key={post.id}>{post.item}</li>

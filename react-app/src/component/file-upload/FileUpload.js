@@ -1,5 +1,5 @@
 import React from 'react';
-import Camera from 'react-html5-camera-photo';
+import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 import { useCallback } from "react"; // import useCallback
 import axios from 'axios';
@@ -70,6 +70,7 @@ const FileUpload = () => {
       <div className="container">
         <Camera
             onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+            idealFacingMode = {FACING_MODES.ENVIRONMENT}
         />
       </div>
     );
