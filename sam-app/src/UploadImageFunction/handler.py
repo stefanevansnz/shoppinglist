@@ -23,11 +23,16 @@ def handler(event, context):
     body = json.loads(event['body'])
     
     image_base64 = body['data']
-    print(image_base64)
+    print("upload to s3")
     
     obj = s3.Object(bucket_name,file_name_with_extention)
-    #obj.put(Body=base64.b64decode(image_base64)) 
-    obj.put(Body=image_base64)
+    
+    image_base64 = image_base64[image_base64.find(",")+1:]
+    
+    print(image_base64)
+    obj.put(Body=base64.b64decode(image_base64)) 
+    
+    #obj.put(Body=image_base64)
     
     response = {}
 
