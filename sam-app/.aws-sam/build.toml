@@ -28,4 +28,13 @@ manifest_hash = "d41d8cd98f00b204e9800998ecf8427e"
 packagetype = "Zip"
 functions = ["uploadImage"]
 
+[function_build_definitions.e9f5bc29-1b6b-4383-9cde-0968edb0c30d]
+codeuri = "C:\\Users\\StefanEvans\\Development\\ambassador\\shoppinglist\\sam-app\\src\\GenerateRecipe"
+runtime = "python3.9"
+architecture = "x86_64"
+handler = "handler.handler"
+manifest_hash = "a5b0c33df5ace6b77b7019544f68e086"
+packagetype = "Zip"
+functions = ["generateRecipe"]
+
 [layer_build_definitions]

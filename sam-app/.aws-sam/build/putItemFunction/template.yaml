@@ -251,6 +251,35 @@ Resources:
     DeletionPolicy: Retain
     Properties:
       LogGroupName: !Sub /aws/lambda/${uploadImage}
+  generateRecipe:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: !Sub
+        - Stack ${AWS::StackName} Function ${ResourceName}
+        - ResourceName: generateRecipe
+      CodeUri: src/GenerateRecipe
+      Handler: handler.handler
+      Runtime: python3.9
+      MemorySize: 3008
+      Timeout: 30
+      Tracing: Active
+      Events:
+        ServerlessRestApiGETrecipe:
+          Type: Api
+          Properties:
+            Path: /recipe
+            Method: GET
+      Policies:
+        - Statement:
+            - Action: bedrock:InvokeModel*
+              Resource: '*'
+              Effect: Allow
+              Sid: DetectDocumentText
+  generateRecipeLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Retain
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${generateRecipe}
 Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL for Prod stage
