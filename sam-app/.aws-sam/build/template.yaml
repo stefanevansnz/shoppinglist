@@ -321,7 +321,7 @@ Resources:
           Type: Api
           Properties:
             Path: /recipe
-            Method: GET
+            Method: POST
       Policies:
       - Statement:
         - Action: bedrock:InvokeModel*

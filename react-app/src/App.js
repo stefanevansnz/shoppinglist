@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FileUpload from "./component/file-upload/FileUpload";
-
+import SuggestRecipe from "./component/suggest-recipe/SuggestRecipe"
 function App() {
   const [posts, setPosts] = useState([]);
 
@@ -18,6 +18,7 @@ function App() {
 
   return (
     <div className="App">
+      <SuggestRecipe />      
       <header className="App-header">
           <h2>Shopping List v0.1</h2>
           <ul>

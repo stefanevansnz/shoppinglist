@@ -7,7 +7,11 @@ bedrock = boto3.client(service_name="bedrock", region_name="us-east-1")
 def handler(event, context):
     # Log the event argument for debugging and for use in local development.
     print(json.dumps(event))
-    prompt = f"\n\nHuman:Generate a step by step recipe for meatballs.\n\nAssistant:"
+    inputBody = json.loads(event.body)
+    print(inputBody)    
+    inputValue = inputBody['data']['input']
+    print(inputValue)
+    prompt = f"\n\nHuman:Generate a step by step recipe for " + inputValue + ".\n\nAssistant:"
 
     body = json.dumps({
         "prompt": prompt,
@@ -39,4 +43,12 @@ def handler(event, context):
                     if completion:
                         generated_recipe += completion
 
-    return generated_recipe
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': generated_recipe
+    }
