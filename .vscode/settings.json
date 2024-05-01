@@ -1,0 +1,10 @@
+{
+    "python.testing.pytestArgs": [
+        "sam-app"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.analysis.extraPaths": [
+        "./sam-app/__tests__/unit/handlers/test_"
+    ]
+}
