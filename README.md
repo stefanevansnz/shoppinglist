@@ -8,6 +8,13 @@ To use the AWS SAM CLI, you need the following tools:
 * Node.js - [Install Node.js 18](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
 
+## Testing
+
+```
+python3 -m pip install -r .\sam-app\src\GenerateRecipe\requirements.txt
+
+```
+
 ## Deploy the sample application
 
 To build and deploy your application for the first time, run the following in your shell:

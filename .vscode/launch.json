@@ -1,25 +1,12 @@
 {
-  "configurations": [
+  "configurations": [  
     {
       "name": "Python Debugger: Current File",
       "type": "debugpy",
       "request": "launch",
       "program": "${file}",
-      "console": "integratedTerminal"
-    },
-    {
-      "type": "aws-sam",
-      "request": "direct-invoke",
-      "name": "sam-app:putItemFunction",
-      "invokeTarget": {
-        "target": "template",
-        "templatePath": "${workspaceFolder}/sam-app/template.yaml",
-        "logicalId": "putItemFunction"
-      },
-      "lambda": {
-        "payload": {},
-        "environmentVariables": {}
-      }
+      "console": "integratedTerminal",
+      "args": ["--headful","--capture=no", "--html=report.html"]     
     }
   ]
 }
