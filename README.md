@@ -21,8 +21,10 @@ To build and deploy your application for the first time, run the following in yo
 
 ```bash
 cd sam-app
+deploy.sh
+
 sam build
-sam deploy
+sam deploy --no-confirm-changeset
 ```
 
 ## Unit tests
@@ -60,6 +62,17 @@ cd .\sam-app\src\client\
 python3 textract_client.py stefan-sam-app-extractText-dywsjEgLYEyC s3://stefan-sam-app-imagebuck-915922766016/shopping_list.jpg
 ```
 
+## Test event for Lambda
+
+```
+{
+    "resource": "/recipe",
+    "path": "/recipe",
+    "httpMethod": "POST",
+    "body": "{\"data\":{\"input\":\"steak\"}}",
+    "isBase64Encoded": false
+}
+```
 
 
 ## Cleanup

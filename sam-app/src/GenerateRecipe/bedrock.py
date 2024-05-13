@@ -1,4 +1,3 @@
-import numpy as np
 import json
 import boto3
 
@@ -37,5 +36,5 @@ class Bedrock:
         return generated_recipe
 
 # local test
-bedrock = Bedrock()
-print(bedrock.generateRecipe("meatballs"))
+# bedrock = Bedrock()
+# print(bedrock.generateRecipe("meatballs"))
