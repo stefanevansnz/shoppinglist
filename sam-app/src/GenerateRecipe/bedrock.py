@@ -8,7 +8,7 @@ class Bedrock:
         # Initialize the AWS Bedrock client
         bedrock = boto3.client(service_name="bedrock-runtime", region_name="us-west-2")
 
-        prompt = f"\n\nHuman:Generate a step by step recipe for " + input + ".\n\nAssistant:"
+        prompt = f"\n\nHuman:List the ingredients for " + input + ".\n\nAssistant:"
 
         body = json.dumps({
             "prompt": prompt,
@@ -17,6 +17,7 @@ class Bedrock:
 
         modelId = "anthropic.claude-instant-v1"
 
+        print("Invoking model...")
         response = bedrock.invoke_model_with_response_stream(
             modelId=modelId,
             body=body

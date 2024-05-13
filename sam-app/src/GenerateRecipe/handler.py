@@ -31,7 +31,7 @@ event = {
     "resource": "/recipe",
     "path": "/recipe",
     "httpMethod": "POST",
-    "body": "{\"data\":\"steak\"}",
+    "body": "{\"data\":\"meatballs\"}",
 }
 response = handler(event, None)
 print(response)
