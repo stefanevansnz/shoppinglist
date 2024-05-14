@@ -19,9 +19,8 @@ python3 -m pip install -r .\sam-app\src\GenerateRecipe\requirements.txt
 
 To build and deploy your application for the first time, run the following in your shell:
 
-```bash
+```powershell
 cd sam-app
-deploy.sh
 
 sam build
 sam deploy --no-confirm-changeset

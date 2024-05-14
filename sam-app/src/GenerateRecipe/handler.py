@@ -2,11 +2,7 @@ import json
 from bedrock import Bedrock
 
 def handler(event, context):
-    # Log the event argument for debugging and for use in local development.
-    # print(json.dumps(event))
-    # inputBody = json.loads(event.body)
-    # print(inputBody)    
-    # inputValue = inputBody['data']['input']
+    
     body = json.loads(event['body'])
     inputValue = body['data']
     print("GenerateRecipe Handler InputValue:")

@@ -36,8 +36,7 @@ const SuggestRecipe = () => {
         };
         console.log('input: ' + input);
 
-        return axios.post("https://n8zgm9ipzf.execute-api.ap-southeast-2.amazonaws.com/Prod/recipe", 
-        {data: input }, config)
+        return axios.post("https://n8zgm9ipzf.execute-api.ap-southeast-2.amazonaws.com/Prod/recipe", {data: input }, config)
         // .then(response => {
         //   // axios.put(res.data, file, configBlop).then(res => console.log(res));
         //   //setLines(response.data);
