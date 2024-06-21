@@ -8,14 +8,22 @@ To use the AWS SAM CLI, you need the following tools:
 * Node.js - [Install Node.js 18](https://nodejs.org/en/), including the npm package management tool.
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community).
 
+## Testing
+
+```
+python3 -m pip install -r .\sam-app\src\GenerateRecipe\requirements.txt
+
+```
+
 ## Deploy the sample application
 
 To build and deploy your application for the first time, run the following in your shell:
 
-```bash
+```powershell
 cd sam-app
+
 sam build
-sam deploy
+sam deploy --no-confirm-changeset
 ```
 
 ## Unit tests
@@ -53,6 +61,17 @@ cd .\sam-app\src\client\
 python3 textract_client.py stefan-sam-app-extractText-dywsjEgLYEyC s3://stefan-sam-app-imagebuck-915922766016/shopping_list.jpg
 ```
 
+## Test event for Lambda
+
+```
+{
+    "resource": "/recipe",
+    "path": "/recipe",
+    "httpMethod": "POST",
+    "body": "{\"data\":{\"input\":\"steak\"}}",
+    "isBase64Encoded": false
+}
+```
 
 
 ## Cleanup

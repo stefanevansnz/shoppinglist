@@ -264,7 +264,7 @@ Resources:
       Timeout: 30
       Tracing: Active
       Events:
-        ServerlessRestApiGETrecipe:
+        ServerlessRestApiPOSTrecipe:
           Type: Api
           Properties:
             Path: /recipe
@@ -274,7 +274,7 @@ Resources:
             - Action: bedrock:InvokeModel*
               Resource: '*'
               Effect: Allow
-              Sid: DetectDocumentText
+              Sid: InvokeBedrockModel
   generateRecipeLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
