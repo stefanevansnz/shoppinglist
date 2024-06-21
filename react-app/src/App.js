@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import MockList from "./component/list/MockList"
 import FileUpload from "./component/file-upload/FileUpload";
 import SuggestRecipe from "./component/suggest-recipe/SuggestRecipe"
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <MockList />
       <SuggestRecipe />      
       <header className="App-header">
           <h2>Shopping List v0.1</h2>

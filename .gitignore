@@ -1,2 +1,6 @@
 node_modules
 .aws-sam
+sam-app/.aws-sam/*
+sam-app/.aws-sam/build/template.yaml
+sam-app/.aws-sam/build.toml
+react-app/package-lock.json
