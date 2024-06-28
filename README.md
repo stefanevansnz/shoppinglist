@@ -36,6 +36,9 @@ my-application$ npm install
 my-application$ npm run test
 ```
 
+# Upgrade from Create React App tp Next.js
+https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app
+
 ## Test locally
 ```bash
  cd react-app
